@@ -1,13 +1,21 @@
 (d => {
 
-// Select elements for form submission
+// Select elements for form submission:
 
 	let form = d.getElementById("team_form");
 	let numPlayers = d.getElementById("number_players");
 	let button1 = d.getElementById("team_button");
 	let team1 = d.getElementById("team_one");
 	let team2 = d.getElementById("team_two");
+	let button2 = d.getElementById("match_button");
+	let score = d.getElementById("score-text");
+	let winner = d.getElementById("winner");
 
+
+
+// Create HTML elements to house team names:
+
+	// let li = d.createElement("li");
 
 // Code for generating silly names. 
 // Name generation code is from https://github.com/TheDeveloper/sillyname/blob/master/index.js
@@ -43,6 +51,12 @@
 	let inputPlayerNumber = 1;
 	let playersPerSide = 1;
 	let players = [];
+	let randomList = [];
+	let firstTeam = [];
+	let secondTeam = [];
+
+
+
 
 	numPlayers.addEventListener("change", event => {
 		inputPlayerNumber = event.target.value;
@@ -50,6 +64,20 @@
 	})
 
 	button1.addEventListener("click", () => {
+
+
+		// inputPlayerNumber = 1;
+		// playersPerSide = 1;
+		// players = [];
+
+		while (team1.firstChild) {
+			team1.removeChild(team1.firstChild);
+		}
+
+		while (team2.firstChild) {
+			team2.removeChild(team2.firstChild);
+		}
+
 		let playersPerSide = inputPlayerNumber;
 		// console.log(playersPerSide);
 
@@ -74,31 +102,76 @@
 
 		// Split the randomised array down the middle:
 
-		let randomList = shufflePlayers(players);
+		randomList = shufflePlayers(players);
 
-		let firstTeam = randomList.slice(0, (players.length/2));
+		firstTeam = randomList.slice(0, (players.length/2));
 		// console.log(firstTeam);
-		let secondTeam = randomList.slice((players.length/2), players.length);
+		secondTeam = randomList.slice((players.length/2), players.length);
 
 		// Get the names out of firstTeam and secondTeam:
 
-		let listTeam = team => {
-			let namesArray = team.map(member => member.name);
-			return namesArray.join("\r\n");
+		// let listTeam = team => {
+		// 	let namesArray = team.map(member => member.name);
+		// 	return namesArray.join("\r\n");
+		// 	}
+
+		let listTeam = (team, location) => {
+			let namesList = team.map(member => {
+				// let li = d.createElement("li");
+				// li.textContent = member.name;
+				// $('<div />').text(member).appendTo(team1);
+				let li = d.createElement("li");
+				li.classList.add("team-member");
+				li.textContent = member.name + " (skill: " + member.skill + ")";
+				location.appendChild(li);
+
+			});
+			// return namesArray.join("\r\n");
+			// return namesArray.join( <br> );	
+			return namesList;	
 		}
+
+
+		// for (i = 0; i < arrayLength; i++) {
+		// $('<div class="results" />').text(arrayVariable[i]).appendTo('body');
+		// }
+
+		// we need to get member names out of the array
+		// put each of them inside an li
+		// put the li inside the ol with the appropriate class name
 
 		// console.log("Team 1:");
 		// console.log(listTeam(firstTeam));
 		// console.log("Team 2:");
 		// console.log(listTeam(secondTeam));
+
+
+		listTeam(firstTeam, team1);
+		listTeam(secondTeam, team2);
 		
-		team1.textcontent = "hello";
+		// team1.textContent = listTeam(firstTeam);
+		// team2.textContent = listTeam(secondTeam);
 		
 		// Reset values
 
 		inputPlayerNumber = 1;
 		playersPerSide = 1;
 		players = [];
+
+
+
+		// var myNode = document.getElementById("foo");
+		// while (myNode.firstChild) {
+		//     myNode.removeChild(myNode.firstChild);
+		// }		
+
+		// member.remove();
+
+		// team1.textContent = "";
+		// team2.textContent = "";
+
+		// var element = document.getElementById("element-id");
+		// element.parentNode.removeChild(element);
 
 	})
 
@@ -147,54 +220,64 @@
 	// a random number (0-1) to produce a variable teamPerformance. This variable is mapped onto
 	// a number of goals, from 0 to 5. 
 
-	let numberOfGoals = team => {
-		let teamSkill = team.reduce((acc, member) => acc + member.skill, 0);
-		// console.log(teamSkill);
-		let teamPerformance = Math.floor(Math.random() * teamSkill);
-		// console.log("in numberofgoals function: ", teamPerformance);
-		if(teamPerformance <= 4) {
-			return 0;
-		} else if (teamPerformance <= 9) {
-			return 1;
-		} else if (teamPerformance <= 14) {
-			return 2;
-		} else if (teamPerformance <= 19) {
-			return 3;
-		} else if (teamPerformance <= 24) {
-			return 4;
-		} else {
-			return 5;
-		}
-	}
+	button2.addEventListener("click", () => {
 
-	// This code tells us which team won (or a draw if number of goals is equal)
-
-	let decideWinner = (firstTeam, secondTeam) => {
-
-		let firstTeamScore = numberOfGoals(firstTeam);
-		let secondTeamScore = numberOfGoals(secondTeam);
-
-		if(firstTeamScore > secondTeamScore) {
-			console.log("Team One Wins!");
-		} else if (firstTeamScore === secondTeamScore) {
-			console.log("Draw!");
-		} else {
-			console.log("Team Two Wins!");
+		let numberOfGoals = team => {
+			let teamSkill = team.reduce((acc, member) => acc + member.skill, 0);
+			// console.log(teamSkill);
+			let teamPerformance = Math.floor(Math.random() * teamSkill);
+			// console.log("in numberofgoals function: ", teamPerformance);
+			if(teamPerformance <= 4) {
+				return 0;
+			} else if (teamPerformance <= 9) {
+				return 1;
+			} else if (teamPerformance <= 14) {
+				return 2;
+			} else if (teamPerformance <= 19) {
+				return 3;
+			} else if (teamPerformance <= 24) {
+				return 4;
+			} else {
+				return 5;
+			}
 		}
 
-		console.log("team scores", firstTeamScore, secondTeamScore);
+		// This code tells us which team won (or a draw if number of goals is equal)
 
-	}
+		let decideWinner = (firstTeam, secondTeam) => {
+
+			let firstTeamScore = numberOfGoals(firstTeam);
+			let secondTeamScore = numberOfGoals(secondTeam);
+
+			if(firstTeamScore > secondTeamScore) {
+				// console.log("Team One Wins!");
+				winner.textContent = "Team One Wins!"
+			} else if (firstTeamScore === secondTeamScore) {
+				winner.textContent = "Draw!"
+			} else {
+				winner.textContent = "Team Two Wins!";
+			}
+
+			score.textContent = "Score: " + firstTeamScore + " - " + secondTeamScore;
 
 
-	// decideWinner(firstTeam, secondTeam);
+
+		}
 
 
+		// console.log(decideWinner(firstTeam, secondTeam));
+
+	})
 
 
 })(document);
 
+				// let li = d.createElement("li");
+				// li.classList.add("team-member");
+				// li.textContent = member.name + " (skill: " + member.skill + ")";
+				// location.appendChild(li);
 
+			
 
 
 
