@@ -48,8 +48,8 @@
 
 // Generate an array of objects representing players
 
-	let inputPlayerNumber = 1;
-	let playersPerSide = 1;
+	let inputPlayerNumber = 5;
+	let playersPerSide = null;
 	let players = [];
 	let randomList = [];
 	let firstTeam = [];
@@ -65,6 +65,7 @@
 
 	button1.addEventListener("click", () => {
 
+				console.log(inputPlayerNumber);
 
 		// inputPlayerNumber = 1;
 		// playersPerSide = 1;
@@ -154,7 +155,7 @@
 		
 		// Reset values
 
-		inputPlayerNumber = 1;
+		// inputPlayerNumber = 1;
 		playersPerSide = 1;
 		players = [];
 
@@ -265,7 +266,7 @@
 		}
 
 
-		// console.log(decideWinner(firstTeam, secondTeam));
+		decideWinner(firstTeam, secondTeam);
 
 	})
 

@@ -1,43 +1,55 @@
-@import normalize.scss
+// @import normalize.scss
+
+//----------Test(body red)-----
+
+// body {
+// 	background-color: red;
+// }
+
 
 //----------Header----------
 
-site-heading {
+.site-heading {
 
+}
+
+.site-heading__text {
+	font-family: 'Amatic SC', cursive;
+	font-size: 5em;
 }
 
 
 //----------Team Size Section----------
 
-team-size {
+.team-size {
 
 }
 
 
 //----------Team Names----------
 
-team-names {
+.team-names {
 
 }
 
 
 //----------Play A Match Section----------
 
-play-match {
+.play-match {
 
 }
 
 
 //----------Score Section----------
 
-score {
+.score {
 
 }
 
 
 //----------Footer / Who Won Section
 
-winner {
+.winner {
 	
 }
 
