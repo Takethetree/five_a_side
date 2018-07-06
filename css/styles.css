@@ -1,14 +1,13 @@
 body {
-  width: 100%;
-  height: 100%; }
+  position: relative;
+  min-height: 100vh; }
 
 body::after {
   content: "";
-  background: url("../images/football-pitch-320100_1920.jpg");
+  background-image: url("../images/football-pitch-320100_1920.jpg");
   background-repeat: repeat-y;
   height: 100%;
   width: 100%;
-  background-size: cover;
   background-position: center;
   opacity: 0.2;
   top: 0;
@@ -19,12 +18,13 @@ body::after {
   z-index: -1; }
 
 .site-heading {
-  margin-bottom: 1em; }
+  margin-bottom: 2em; }
 
 .site-heading__text {
   font-family: 'Amatic SC', cursive;
-  font-size: 7em;
-  margin-top: 0.5em; }
+  font-size: 6em;
+  margin-top: 0.5em;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15); }
 
 .site-heading__right-col {
   position: relative; }
@@ -32,58 +32,64 @@ body::after {
 .site-heading__image {
   width: 7em;
   position: absolute;
-  top: 4em;
-  right: 10em; }
+  top: 4em; }
 
 .team-size {
-  margin-bottom: 5em; }
+  margin-bottom: 2em; }
 
 .team-size__text {
-  margin-left: 2em;
+  margin-left: 1em;
   font-family: 'Gaegu', cursive; }
 
 .team-button {
+  margin: 1em;
   font-family: 'Gaegu', cursive; }
 
 .team-one__text {
   margin-left: 1em;
   font-family: 'Gaegu', cursive; }
 
-.team-one__list li {
-  font-family: 'Gaegu', cursive;
-  font-size: 1.25em; }
-
 .team-two__text {
   margin-left: 1em;
   font-family: 'Gaegu', cursive; }
 
-.team-two__list li {
+.team-member {
   font-family: 'Gaegu', cursive;
   font-size: 1.25em; }
 
 .match-button {
-  margin-bottom: 2em;
+  padding-left: 1.25em;
+  padding-right: 1.25em;
+  margin: 1em;
   font-family: 'Gaegu', cursive; }
 
 .score-text {
   margin-bottom: 1em;
   margin-left: 0.25em;
   font-family: 'Gaegu', cursive;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  text-decoration: underline; }
 
 .winner {
   margin-left: 0.25em;
   font-family: 'Gaegu', cursive;
-  font-size: 1.5em; }
+  font-size: 1.5em;
+  text-decoration: underline; }
 
 @media only screen and (max-width: 320px) {
   .site-heading__text {
     font-size: 3em; }
   .site-heading__image {
-    width: 3em; } }
+    width: 3em; }
+  .team-member {
+    font-family: 'Gaegu', cursive;
+    font-size: 1em; } }
 
 @media only screen and (min-width: 321px) and (max-width: 768px) {
   .site-heading__text {
     font-size: 5em; }
   .site-heading__image {
-    width: 5em; } }
+    width: 5em; }
+  .team-member {
+    font-family: 'Gaegu', cursive;
+    font-size: 1em; } }

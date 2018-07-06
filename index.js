@@ -65,7 +65,14 @@
 
 	button1.addEventListener("click", () => {
 
-				console.log(inputPlayerNumber);
+
+
+
+		score.textContent = "";
+		winner.textContent = "";
+
+
+				// console.log(inputPlayerNumber);
 
 		// inputPlayerNumber = 1;
 		// playersPerSide = 1;
@@ -77,6 +84,10 @@
 
 		while (team2.firstChild) {
 			team2.removeChild(team2.firstChild);
+		}
+
+		if (inputPlayerNumber > 11) {
+			return score.textContent = "Too many players! (Try 1-11)";
 		}
 
 		let playersPerSide = inputPlayerNumber;
@@ -223,9 +234,12 @@
 
 	button2.addEventListener("click", () => {
 
+		if(team1.children.length === 0) {
+			return score.textContent = "There are no teams...";
+		}
+
 		let numberOfGoals = team => {
 			let teamSkill = team.reduce((acc, member) => acc + member.skill, 0);
-			// console.log(teamSkill);
 			let teamPerformance = Math.floor(Math.random() * teamSkill);
 			// console.log("in numberofgoals function: ", teamPerformance);
 			if(teamPerformance <= 4) {
@@ -243,6 +257,7 @@
 			}
 		}
 
+
 		// This code tells us which team won (or a draw if number of goals is equal)
 
 		let decideWinner = (firstTeam, secondTeam) => {
@@ -252,23 +267,22 @@
 
 			if(firstTeamScore > secondTeamScore) {
 				// console.log("Team One Wins!");
-				winner.textContent = "Team One Wins!"
+				winner.textContent = "Team One Wins!";
 			} else if (firstTeamScore === secondTeamScore) {
-				winner.textContent = "Draw!"
+				winner.textContent = "Draw!";
 			} else {
 				winner.textContent = "Team Two Wins!";
 			}
 
 			score.textContent = "Score: " + firstTeamScore + " - " + secondTeamScore;
 
-
-
 		}
 
 
 		decideWinner(firstTeam, secondTeam);
 
-	})
+	}) 
+
 
 
 })(document);
