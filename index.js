@@ -1,6 +1,7 @@
 (d => {
 
-// Select elements for form submission:
+
+// Select elements for later DOM manipulation:
 
 	let form = d.getElementById("team_form");
 	let numPlayers = d.getElementById("number_players");
@@ -11,11 +12,6 @@
 	let score = d.getElementById("score_text");
 	let winner = d.getElementById("winner");
 
-
-
-// Create HTML elements to house team names:
-
-	// let li = d.createElement("li");
 
 // Code for generating silly names. 
 // Name generation code is from https://github.com/TheDeveloper/sillyname/blob/master/index.js
@@ -46,7 +42,8 @@
 	    return adjective + noun1 + ' ' + noun2;
 	}
 
-// Generate an array of objects representing players
+
+// Set initial (global) variables
 
 	let inputPlayerNumber = 5;
 	let playersPerSide = null;
@@ -56,27 +53,28 @@
 	let secondTeam = [];
 
 
+// ---------- TEAM GENERATION ---------- //
 
+
+// Event Listener tracks the value of number input and sets inputPlayerNumber to that value. 
+// This is later used to determine the size of each team:
 
 	numPlayers.addEventListener("change", event => {
 		inputPlayerNumber = event.target.value;
-		// console.log(inputPlayerNumber);
 	})
+
+
+
+// Event handler used for generating teams:
 
 	button1.addEventListener("click", () => {
 
-
-
+// First it resets the score and 'winner' sections to a blank string: 
 
 		score.textContent = "";
 		winner.textContent = "";
 
-
-				// console.log(inputPlayerNumber);
-
-		// inputPlayerNumber = 1;
-		// playersPerSide = 1;
-		// players = [];
+//	Then it removes the previous teams (children of the team1 / team2 elements):
 
 		while (team1.firstChild) {
 			team1.removeChild(team1.firstChild);
@@ -86,14 +84,18 @@
 			team2.removeChild(team2.firstChild);
 		}
 
+// 	If too many players are entered (>11), it returns an error message:
+
 		if (inputPlayerNumber > 11) {
 			return score.textContent = "Too many players! (Try 1-11)";
 		}
 
-		let playersPerSide = inputPlayerNumber;
-		// console.log(playersPerSide);
+//	It sets the playersPerSide variable to the number from our click handler:
 
-		// Generate an array of player objects:
+		let playersPerSide = inputPlayerNumber;
+
+//	Then uses that variable to generate an array of all the players (represented by objects). 
+// 	Each player is allocated a randomly generated name and skill level. 
 
 		for(let i=0; i<(playersPerSide * 2); i++) {
 			players.push({
@@ -102,7 +104,7 @@
 			});
 		}
 
-		// Shuffle that array using Fisher-Yates:
+// 	The player array is shuffled randomly using the Fisher-Yates algorithm:
 
 		let shufflePlayers = players => {
 		    for (let i = players.length - 1; i > 0; i--) {
@@ -112,136 +114,65 @@
 		    return players;
 		}
 
-		// Split the randomised array down the middle:
+// 	Then split into two arrays of equal size: 
 
 		randomList = shufflePlayers(players);
-
 		firstTeam = randomList.slice(0, (players.length/2));
-		// console.log(firstTeam);
 		secondTeam = randomList.slice((players.length/2), players.length);
 
-		// Get the names out of firstTeam and secondTeam:
-
-		// let listTeam = team => {
-		// 	let namesArray = team.map(member => member.name);
-		// 	return namesArray.join("\r\n");
-		// 	}
+//	This function generates li elements with a class "team-member", container the player names
+//	and skill levels. 
 
 		let listTeam = (team, location) => {
 			let namesList = team.map(member => {
-				// let li = d.createElement("li");
-				// li.textContent = member.name;
-				// $('<div />').text(member).appendTo(team1);
 				let li = d.createElement("li");
 				li.classList.add("team-member");
 				li.textContent = member.name + " (skill: " + member.skill + ")";
 				location.appendChild(li);
 
 			});
-			// return namesArray.join("\r\n");
-			// return namesArray.join( <br> );	
 			return namesList;	
 		}
 
-
-		// for (i = 0; i < arrayLength; i++) {
-		// $('<div class="results" />').text(arrayVariable[i]).appendTo('body');
-		// }
-
-		// we need to get member names out of the array
-		// put each of them inside an li
-		// put the li inside the ol with the appropriate class name
-
-		// console.log("Team 1:");
-		// console.log(listTeam(firstTeam));
-		// console.log("Team 2:");
-		// console.log(listTeam(secondTeam));
-
+//	And is then immediately invoked, showing the team names on-screen:
 
 		listTeam(firstTeam, team1);
 		listTeam(secondTeam, team2);
-		
-		// team1.textContent = listTeam(firstTeam);
-		// team2.textContent = listTeam(secondTeam);
-		
-		// Reset values
 
-		// inputPlayerNumber = 1;
-		playersPerSide = 1;
+//	Initial variables are reset for subsequent clicks of the event handler: 
+
+		playersPerSide = null;
 		players = [];
-
-
-
-		// var myNode = document.getElementById("foo");
-		// while (myNode.firstChild) {
-		//     myNode.removeChild(myNode.firstChild);
-		// }		
-
-		// member.remove();
-
-		// team1.textContent = "";
-		// team2.textContent = "";
-
-		// var element = document.getElementById("element-id");
-		// element.parentNode.removeChild(element);
 
 	})
 
-	// let playersPerSide = button1.addEventListener("click", () => form.submit());
-	// let playersPerSide = numPlayers.value;
-	// let playersPerSide = 5;
-	
+
+// ---------- SCORE / WINNER GENERATION ---------- //
 
 
-	// for(let i=0; i<(playersPerSide * 2); i++) {
-	// 	players.push({
-	// 		name: generateStupidName(),
-	// 		skill: Math.floor((Math.random() * 10) +1),		
-	// 	});
-	// }
 
-
-	// Randomly shuffle players array using Fisher-Yates
-
-	// let shufflePlayers = players => {
-	//     for (let i = players.length - 1; i > 0; i--) {
-	//         const j = Math.floor(Math.random() * (i + 1));
-	//         [players[i], players[j]] = [players[j], players[i]];
-	//     }
-	//     return players;
-	// }
-
-	// Split the randomised array down the middle:
-
-
-	// let randomList = shufflePlayers(players);
-
-	// let firstTeam = randomList.slice(0, (players.length/2));
-	// // console.log(firstTeam);
-	// let secondTeam = randomList.slice((players.length/2), players.length);
-	// console.log(secondTeam);
-
-	// Get the names out of firstTeam and secondTeam:
-
-	// let listTeam = team => {
-	// 	let namesArray = team.map(member => member.name);
-	// 	return namesArray.join("\r\n");
-	// }
-
-	// Algorithm for generating number of goals. It uses a product of combined team skill and 
-	// a random number (0-1) to produce a variable teamPerformance. This variable is mapped onto
-	// a number of goals, from 0 to 5. 
+// 	This click handler is used to 'play' a match by generating the number of goals each team scores
+//	and determining the winner:
 
 	button2.addEventListener("click", () => {
 
+// 	If no teams have been generated, it returns an error message:
+
 		if(team1.children.length === 0) {
-			return score.textContent = "There are no teams...";
+			return score.textContent = "Generate teams first!";
 		}
+
+//	This function adds the skill numbers each team member and stores it in a variable ('teamSkill').  
+//  It then generates a'teamPerformance' variable, which is the rounded product of a random number
+// 	and teamSkiil, thus simulating a mix of luck and skill. 
+
+//	The teamPerformance number is then mapped onto a number of goals, using an if-statement:
+
 
 		let numberOfGoals = team => {
 			let teamSkill = team.reduce((acc, member) => acc + member.skill, 0);
 			let teamPerformance = Math.floor(Math.random() * teamSkill);
-			// console.log("in numberofgoals function: ", teamPerformance);
+
 			if(teamPerformance <= 4) {
 				return 0;
 			} else if (teamPerformance <= 9) {
@@ -257,8 +188,8 @@
 			}
 		}
 
-
-		// This code tells us which team won (or a draw if number of goals is equal)
+// 	This function invokes the numberOfGoals function and uses an if-statement to work out which
+//	team won. It then outputs the victor to the DOM:
 
 		let decideWinner = (firstTeam, secondTeam) => {
 
@@ -266,7 +197,6 @@
 			let secondTeamScore = numberOfGoals(secondTeam);
 
 			if(firstTeamScore > secondTeamScore) {
-				// console.log("Team One Wins!");
 				winner.textContent = "Team One Wins!";
 			} else if (firstTeamScore === secondTeamScore) {
 				winner.textContent = "Draw!";
@@ -278,6 +208,7 @@
 
 		}
 
+//	The function is then immediately invoked:
 
 		decideWinner(firstTeam, secondTeam);
 
@@ -287,10 +218,7 @@
 
 })(document);
 
-				// let li = d.createElement("li");
-				// li.classList.add("team-member");
-				// li.textContent = member.name + " (skill: " + member.skill + ")";
-				// location.appendChild(li);
+
 
 			
 

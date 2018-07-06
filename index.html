@@ -18,7 +18,6 @@
 </head>
 <body>
 
-
     <header class="container site-heading">
         <div class="row">
             <div class="col-4 site-heading__left-col">
@@ -40,7 +39,7 @@
                     </h5>   
             </div>          
             <div class="col team-size__center-col">
-                <input id="number_players" class="number-players" type="number" name="players_per_side" value="5" min="1" max="11"> 
+                <input id="number_players" class="team-size__number-players" type="number" name="players_per_side" value="5" min="1" max="11"> 
             </div>
             <div class="col team-size__right-col">
                 <button id="team_button" class="btn btn-primary team-button">
@@ -56,7 +55,7 @@
     <div class="container team-names">
         <div class="row team-names__row">
               <div class="col team-one">
-                    <h5 class="team-one__text">
+                    <h5 class="team-names--textstyle">
                         TEAM 1
                     </h5>
                     <ol id="team_one" class="team-one__list">
@@ -64,7 +63,7 @@
                     </ol>
                 </div>
                 <div class="col team-two">
-                    <h5 class="team-two__text">
+                    <h5 class="team-names--textstyle">
                         TEAM 2
                     </h5>
                     <ol id="team_two" class="team-two__list">
@@ -72,13 +71,8 @@
                     </ol>
                 </div>
                 <div class="col container score">
-                    <div class="row">
-<!--                         <button id="match_button" type="button" class="btn btn-primary match-button">
-                            Play a Match!
-                        </button> -->
-                    </div>
                     <div class="row ">
-                        <h5 id="score_text" class="score-text">
+                        <h5 id="score_text" class="score--text">
 
                         </h5>
                     </div>
@@ -90,30 +84,6 @@
                 </div>
         </div>
     </div>
-
-<!--     <div class="container play-match">
-        <div class="row">
-            <button id="match_button" type="button" class="btn btn-primary match-button">
-                Play a match!
-            </button>
-        </div>
-    </div> -->
-
-<!--     <div class="container score">
-        <div class="row justify-content-center">
-            <h5 id="score-text">
-
-            </h5>
-        </div>
-    </div> -->
-
-<!--     <footer class="container">
-        <div class="row justify-content-center">
-            <h5 id="winner">
-                
-            </h5>
-        </div>
-    </footer> -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
