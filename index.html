@@ -13,87 +13,109 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Gaegu" rel="stylesheet">
 <!--   <link rel="stylesheet" href="css/main.css"> -->
 </head>
 <body>
 
     <header class="container site-heading">
-        <div class="row justify-content-center">
-            <h1 class="site-heading__text">
-              Five-a-side
-            </h1>
+        <div class="row">
+            <div class="col site-heading__left-col">
+                <h1 class="site-heading__text">
+                  Five-a-side
+                </h1>
+            </div>
+            <div class="col site-heading__right-col">
+                <img src="images/football-157930_640.png" class="img-fluid site-heading__image">
+            </div>
         </div>
     </header>
 
     <div class="container team-size">
         <div class="row">
-            <h5 class="col">
-              How many players per side?
-            </h5>
+            <div class="col team-size__left-col">
+                    <h5 class="team-size__text">
+                      Players per side:
+                    </h5>   
+            </div>          
+            <div class="col team-size__center-col">
+                <input id="number_players" class="number-players" type="number" name="players_per_side" value="5" min="1" max="11"> 
+            </div>
+            <div class="col team-size__right-col">
+                <button id="team_button" class="btn btn-primary team-button">
+                    Generate Teams!
+                </button>
+            </div>
         </div>    
-        <div class="row">
-<!--             <form id="team_form"> -->
-                <input id="number_players" type="number" name="players_per_side" value="5"> 
-<!--                 <button type="button" class="btn btn-primary">
-                    Generate Team!
-                </button> -->
-                <input id="team_button" class="btn btn-primary" type="submit" name="players_per_side" value="Generate Teams!">
-<!--             </form> -->
-
-        </div>
     </div>
 
     <div class="container team-names">
-        <div class="row">
-              <span class="col">
-                    <h5>
-                        Team 1
+        <div class="row team-names__row">
+              <div class="col team-one">
+                    <h5 class="team-one__text">
+                        TEAM 1
                     </h5>
-                    <ol id="team_one">
+                    <ol id="team_one" class="team-one__list">
                         
                     </ol>
-                </span>
-                <span class="col">
-                    <h5>
-                        Team 2
+                </div>
+                <div class="col team-two">
+                    <h5 class="team-two__text">
+                        TEAM 2
                     </h5>
-                    <ol id="team_two">
+                    <ol id="team_two" class="team-two__list">
+                        
+                    </ol>
+                </div>
+                <div class="col container score">
+                    <div class="row align-items-start">
+                        <button id="match_button" type="button" class="btn btn-primary match-button">
+                            Play a Match!
+                        </button>
+                    </div>
+                    <div class="row align-items-center">
+                        <h5 id="score_text" class="score-text">
 
-                        
-                    </ol>
-                </span>
+                        </h5>
+                    </div>
+                    <div class="row align-items-end">
+                        <h5 id="winner" class="winner">
+                            
+                        </h5> 
+                    </div>   
+                </div>
         </div>
     </div>
 
-    <div class="container play-match">
+<!--     <div class="container play-match">
         <div class="row">
-            <button id="match_button" type="button" class="btn btn-primary">
+            <button id="match_button" type="button" class="btn btn-primary match-button">
                 Play a match!
             </button>
         </div>
-    </div>
+    </div> -->
 
-    <div class="container score">
+<!--     <div class="container score">
         <div class="row justify-content-center">
             <h5 id="score-text">
 
             </h5>
         </div>
-    </div>
+    </div> -->
 
-    <footer class="container">
+<!--     <footer class="container">
         <div class="row justify-content-center">
             <h5 id="winner">
                 
             </h5>
         </div>
-    </footer>
-
+    </footer> -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <script src="index.js" type="text/javascript"></script>
+
 
 </body>
 </html>

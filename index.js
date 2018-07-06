@@ -8,7 +8,7 @@
 	let team1 = d.getElementById("team_one");
 	let team2 = d.getElementById("team_two");
 	let button2 = d.getElementById("match_button");
-	let score = d.getElementById("score-text");
+	let score = d.getElementById("score_text");
 	let winner = d.getElementById("winner");
 
 
