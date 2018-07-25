@@ -6,6 +6,8 @@ between the two teams and output the winner.
 The app was built using Javascript, and styled using Sass and Bootstrap. It was my final project for the Spring 2018 cohort
 of the Coding Fellowship at Bristol's [DevelopMe](https://developme.training/).
 
+A live version of the app can be seen [here](http://sam.developme.space/).
+
 ## Installation
 
 The app requires the following dependencies: 
